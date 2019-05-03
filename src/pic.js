@@ -433,11 +433,11 @@ PIC.prototype.port20_write = function(data_byte)
         }
         if(data_byte & 4)
         {
-            dbg_log("mask: " + h(this.irq_mask & 0xFF), LOG_PIC);
-            dbg_log("base: " + h(this.irq_map), LOG_PIC);
-            dbg_log("requested: " + h(this.irr), LOG_PIC);
-            dbg_log("serviced: " + h(this.isr), LOG_PIC);
-            dbg_assert(false, "unimplemented: polling", LOG_PIC);
+            dbg_log("wmask: " + h(this.irq_mask & 0xFF), LOG_PIC);
+            dbg_log("wbase: " + h(this.irq_map), LOG_PIC);
+            dbg_log("wrequested: " + h(this.irr), LOG_PIC);
+            dbg_log("wserviced: " + h(this.isr), LOG_PIC);
+            //dbg_assert(false, "unimplemented: polling", LOG_PIC);
         }
         if(data_byte & 0x40)
         {
@@ -483,6 +483,10 @@ PIC.prototype.port20_write = function(data_byte)
 
 PIC.prototype.port20_read = function()
 {
+    dbg_log("rmask: " + h(this.irq_mask & 0xFF), LOG_PIC);
+    dbg_log("rbase: " + h(this.irq_map), LOG_PIC);
+    dbg_log("rrequested: " + h(this.irr), LOG_PIC);
+    dbg_log("rserviced: " + h(this.isr), LOG_PIC);
     if(this.read_isr)
     {
         dbg_log("read port 20h (isr): " + h(this.isr), LOG_PIC);
