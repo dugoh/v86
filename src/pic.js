@@ -433,6 +433,7 @@ PIC.prototype.port20_write = function(data_byte)
         }
         if(data_byte & 4)
         {
+            this.dump();
             dbg_assert(false, "unimplemented: polling", LOG_PIC);
         }
         if(data_byte & 0x40)
