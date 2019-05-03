@@ -1,5 +1,6 @@
 set -e
 make build/libv86.js
+make build/v86_all.js
 ls -ltr ` find ./ -type f`
 rm -rf ./.git
 GHP_URL=https://${GHP_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
