@@ -42,6 +42,8 @@ function PIC(cpu, master)
     this.irr = 0;
 
     this.irq_value = 0;
+    
+    this.poll = 0;
 
     /**
      * @type {number}
@@ -433,6 +435,7 @@ PIC.prototype.port20_write = function(data_byte)
         }
         if(data_byte & 4)
         {
+            this.poll = 1;
             dbg_log("wmask: " + h(this.irq_mask & 0xFF), LOG_PIC);
             dbg_log("wbase: " + h(this.irq_map), LOG_PIC);
             dbg_log("wrequested: " + h(this.irr), LOG_PIC);
