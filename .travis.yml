@@ -8,6 +8,7 @@ before_install:
 install:
   - sudo apt-get install -y gcc-multilib nasm gdb
 script:
+  - chmod +x "./.travis-run-$TEST_SUITE.sh"
   - "./.travis-run-$TEST_SUITE.sh"
 env:
     - TEST_SUITE=unit
