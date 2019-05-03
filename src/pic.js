@@ -433,7 +433,10 @@ PIC.prototype.port20_write = function(data_byte)
         }
         if(data_byte & 4)
         {
-            this.dump();
+            dbg_log("mask: " + h(this.irq_mask & 0xFF), LOG_PIC);
+            dbg_log("base: " + h(this.irq_map), LOG_PIC);
+            dbg_log("requested: " + h(this.irr), LOG_PIC);
+            dbg_log("serviced: " + h(this.isr), LOG_PIC);
             dbg_assert(false, "unimplemented: polling", LOG_PIC);
         }
         if(data_byte & 0x40)
