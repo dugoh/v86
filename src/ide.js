@@ -1547,7 +1547,9 @@ IDEInterface.prototype.ata_read_sectors = function(cmd)
             " mode=" + (this.is_lba ? "lba" : "chs") +
             " lba=" + h(lba) +
             " lbacount=" + h(count) +
-            " bytecount=" + h(byte_count), LOG_DISK);
+            " bytecount=" + h(byte_count) +
+            " start=" + h(start) +
+            " buffer=" + h(this.buffer.byteLength), LOG_DISK);
 
     if(start + byte_count > this.buffer.byteLength)
     {
@@ -1593,7 +1595,7 @@ IDEInterface.prototype.ata_read_sectors_dma = function(cmd)
 
     if(start + byte_count > this.buffer.byteLength)
     {
-        dbg_assert(false, "ATA read: Outside of disk", LOG_DISK);
+        dbg_assert(false, "ATA read: Outside of dma disk", LOG_DISK);
 
         this.status = 0xFF;
         this.push_irq();
