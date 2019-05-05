@@ -563,7 +563,7 @@ function IDEInterface(device, cpu, buffer, is_cd, device_nr, interface_nr, bus)
     this.buffer = buffer;
 
     /** @type {number} */
-    this.is_lba = 0;
+    this.is_lba = 1;
 
     /** @type {number} */
     this.bytecount = 0;
