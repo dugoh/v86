@@ -490,6 +490,13 @@ PIC.prototype.port20_read = function()
     dbg_log("rbase: " + h(this.irq_map), LOG_PIC);
     dbg_log("rrequested: " + h(this.irr), LOG_PIC);
     dbg_log("rserviced: " + h(this.isr), LOG_PIC);
+    dbg_log("rpoll: " + h(this.poll), LOG_PIC);
+    if(this.poll)
+    {
+        this.poll = 0;
+        dbg_log("rpoll: " + h(this.poll), LOG_PIC);
+        dbg_assert(false, "unimplemented: polling", LOG_PIC);
+    }
     if(this.read_isr)
     {
         dbg_log("read port 20h (isr): " + h(this.isr), LOG_PIC);
