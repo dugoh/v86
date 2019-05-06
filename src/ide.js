@@ -535,6 +535,10 @@ function IDEInterface(device, cpu, buffer, is_cd, device_nr, interface_nr, bus)
             rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG) | 1 << this.nr * 4);
         rtc.cmos_write(CMOS_DISK_DATA, rtc.cmos_read(CMOS_DISK_DATA) & 0x0F | 0xF0);
 
+        
+        dbg_log("TRANS_FLAG: r " + h(rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG)) + " w " + 
+                h(rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG) | 1 << this.nr * 4)), LOG_DISK);
+        
         var reg = CMOS_DISK_DRIVE1_CYL;
         rtc.cmos_write(reg + 0, this.cylinder_count & 0xFF);
         rtc.cmos_write(reg + 1, this.cylinder_count >> 8 & 0xFF);
@@ -563,7 +567,7 @@ function IDEInterface(device, cpu, buffer, is_cd, device_nr, interface_nr, bus)
     this.buffer = buffer;
 
     /** @type {number} */
-    this.is_lba = 1;
+    this.is_lba = 0;
 
     /** @type {number} */
     this.bytecount = 0;
