@@ -454,6 +454,8 @@ IDEDevice.prototype.set_state = function(state)
  */
 function IDEInterface(device, cpu, buffer, is_cd, device_nr, interface_nr, bus)
 {
+    dbg_log("Constructor: " + h(device), LOG_DISK);
+    
     this.device = device;
 
     /** @const @type {BusConnector} */
