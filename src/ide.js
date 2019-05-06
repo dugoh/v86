@@ -537,9 +537,8 @@ function IDEInterface(device, cpu, buffer, is_cd, device_nr, interface_nr, bus)
             rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG) | 1 << this.nr * 4);
         rtc.cmos_write(CMOS_DISK_DATA, rtc.cmos_read(CMOS_DISK_DATA) & 0x0F | 0xF0);
 
-        
         dbg_log("TRANS_FLAG: r " + h(rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG)) + " w " + 
-                h(rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG) | 1 << this.nr * 4)), LOG_DISK);
+                h(rtc.cmos_read(CMOS_BIOS_DISKTRANSFLAG) | 1 << this.nr * 4), LOG_DISK);
         
         var reg = CMOS_DISK_DRIVE1_CYL;
         rtc.cmos_write(reg + 0, this.cylinder_count & 0xFF);
